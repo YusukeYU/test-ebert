@@ -1,0 +1,57 @@
+.mobile-container {
+    margin: auto;
+    background-color: #555;
+    color: white;
+    border-radius: 10px;
+  }
+  
+  .topnav {
+    overflow: hidden;
+    background-color: #333;
+    position: relative;
+  }
+  
+  .topnav #myLinks {
+    display: none;
+  }
+  #home:hover {
+    background-color: black!important;
+    color: white;
+  }
+  
+  .topnav a {
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+    font-weight: 600;
+  }
+  
+  .topnav a.icon {
+    background: black;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .active {
+    background-color: black;
+    color: white;
+  }
+  .slick-test img {
+    width: 100%;
+}
+.slick-test, .slick-test img {
+    height: 400px;
+}
+.myclass{
+    background-color: black!important;
+    color: white!important;
+}
