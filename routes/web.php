@@ -15,6 +15,10 @@ Route::group(['middleware' => 'auth'], function()
 {
     Route::get('/dashboard/main',['uses' => 'UserController@pageMain'], )->name('Main');
     Route::resource('/dashboard/users', 'UserController');
+    Route::resource('/dashboard/products', 'ProductController');
     Route::post('/dashboard/users/find', 'UserController@find')->name('find-user');
     Route::get('/logout',['middleware' => 'auth', 'uses' => 'UserController@logout'], )->name('Logout');
 });
+
+
+

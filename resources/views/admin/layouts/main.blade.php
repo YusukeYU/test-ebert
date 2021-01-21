@@ -24,7 +24,7 @@
             <a id="home" href="/dashboard/main" class="active">Teste || Ebert</a>
             <div id="myLinks">
                 <a href="{{ route('users.index') }}">Usuários</a>
-                <a href="#">Produtos</a>
+                <a href="{{ route('products.index') }}">Produtos</a>
                 <a href="/logout">Logout</a>
             </div>
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
@@ -103,6 +103,7 @@
         });
 
     </script>
+    <script src="{{asset('js/main.js')}}"></script> 
 </body>
 
 </html>

@@ -11,4 +11,6 @@ interface IBaseRepositoryInterface
    public function find($id): ?Model;
 
    public function delete($id);
+
+   public function update(array $data, $id, $attribute = "id");
 }
