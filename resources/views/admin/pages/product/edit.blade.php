@@ -3,7 +3,13 @@
     <div style="margin : 2rem 0;" class="text-center">
         <h3>Editar Produto </h3>
     </div>
-
+    @if ($errors->any())
+    <div class="text-center">
+            @foreach ($errors->all() as $error)
+                <p style="color: red">{{ $error }}</p>
+            @endforeach
+    </div>
+@endif
     <div style="margin-top: 3rem ;margin-bottom: 4rem ; max-width: 400px!important" class="container">
         <form enctype="multipart/form-data" action="{{ route('products.update', $product->id_product) }}" method="POST"
             style="text-align: center">
@@ -35,14 +41,5 @@
             </div>
             <button style="background-color: black; border:none;" type="submit" class="btn btn-primary">Salvar</button>
         </form>
-        @if ($errors->any())
-            <div class="text-center">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li style="color: red">{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
     </div>
 @endsection

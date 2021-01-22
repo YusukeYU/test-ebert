@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Interfaces\ProductRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\EditProductRequest;
+
 
 class ProductController extends Controller
 {
@@ -42,7 +44,7 @@ class ProductController extends Controller
         return redirect()->route('products.index');
     }
      
-    public function update(Request $request, $id)
+    public function update(EditProductRequest $request, $id)
     {
         $this->productRepository->updateProduct($request,$id, 'id_product');
         return redirect()->route('products.index');
