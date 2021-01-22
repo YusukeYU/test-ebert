@@ -7,11 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Teste || Ebert</title>
     <link href="{{ asset('css/bootstrap.min.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('css/font-awesome.min.css') }}" type="text/css" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" type="text/css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/slick/slick.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/slick/slick-theme.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/slick/new.css') }}" />
+
+   @yield('css')
 </head>
 
 <body>
@@ -28,7 +27,7 @@
                 <a href="/logout">Logout</a>
             </div>
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                <i class="fa fa-bars"></i>
+                <i class="fa fa-bars" aria-hidden="true"></i>
             </a>
         </div>
     </div>
@@ -51,10 +50,10 @@
         </script>
 
 
-<footer class="bg-light text-center text-lg-start myclass">
+<footer class="bg-light text-center text-lg-start myclass text-center">
   <div class="container p-4">
-    <div class="row">
-      <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+    <div  class="row">
+      <div  style="max-width: 100%; flex: 0 0 100%" class="col-lg-6 col-md-12 mb-4 mb-md-0">
         <h5 class="text-uppercase">Sistema para teste</h5>
 
         <p>
@@ -83,27 +82,10 @@
     </script>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="{{ asset('css/slick/slick.min.js') }}"></script>
 
-    <script type="text/javascript">
-        $('.slick-test').slick({
-            dots: false,
-            infinite: true,
-            speed: 300,
-            slidesToShow: 1,
-            adaptiveHeight: true,
-            autoplay: true,
-            autoplaySpeed: 2000,
-            prevArrow: false,
-            nextArrow: false,
-            swipe: false,
-            slidesToScroll: 1,
-            variableWidth: true,
-            centerMode: true,
-        });
-
-    </script>
     <script src="{{asset('js/main.js')}}"></script> 
+
+    @yield('scripts')
 </body>
 
 </html>

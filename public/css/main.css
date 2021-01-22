@@ -55,3 +55,13 @@
     background-color: black!important;
     color: white!important;
 }
+
+.page-link{
+  color:black;
+}
+.page-item.active .page-link {
+  z-index: 1;
+  color: #fff;
+  background-color:black;
+  border-color:black;
+}

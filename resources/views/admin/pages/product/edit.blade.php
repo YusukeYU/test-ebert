@@ -5,7 +5,7 @@
     </div>
 
     <div style="margin-top: 3rem ;margin-bottom: 4rem ; max-width: 400px!important" class="container">
-        <form enctype="multipart/form-data" action="{{ route('users.update', $product->id_product) }}" method="POST"
+        <form enctype="multipart/form-data" action="{{ route('products.update', $product->id_product) }}" method="POST"
             style="text-align: center">
             @csrf
             @method('put')

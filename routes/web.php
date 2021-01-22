@@ -17,6 +17,7 @@ Route::group(['middleware' => 'auth'], function()
     Route::resource('/dashboard/users', 'UserController');
     Route::resource('/dashboard/products', 'ProductController');
     Route::post('/dashboard/users/find', 'UserController@find')->name('find-user');
+    Route::post('/dashboard/products/find', 'ProductController@find')->name('find-product');
     Route::get('/logout',['middleware' => 'auth', 'uses' => 'UserController@logout'], )->name('Logout');
 });
 

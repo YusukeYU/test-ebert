@@ -1,4 +1,10 @@
 @extends('admin.layouts.main')
+@section('css')
+<link rel="stylesheet" type="text/css" href="{{ asset('css/slick/slick.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('css/slick/slick-theme.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('css/slick/new.css') }}" />
+@endsection
+
 @section('container')
     <div class="slick-test">
         <div> <img src="{{ asset('assets/04.png') }}" alt="Segundo Slide"></div>
@@ -30,4 +36,25 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+<script type="text/javascript" src="{{ asset('css/slick/slick.min.js') }}"></script>
+<script type="text/javascript">
+    $('.slick-test').slick({
+        dots: false,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        adaptiveHeight: true,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        prevArrow: false,
+        nextArrow: false,
+        swipe: false,
+        slidesToScroll: 1,
+        variableWidth: true,
+        centerMode: true,
+    });
+</script>
 @endsection

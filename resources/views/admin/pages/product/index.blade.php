@@ -6,12 +6,12 @@
 
     <div class="text-center">
         <div class="btn-group" role="group" aria-label="Exemplo básico">
-            <a href="{{ route('products.create') }}" style="color: white" class="btn btn-secondary"><i class="fa fa-user-plus"
-                    aria-hidden="true"></i>
+            <a href="{{ route('products.create') }}" style="color: white" class="btn btn-secondary"><i
+                    class="fa fa-user-plus" aria-hidden="true"></i>
             </a>
         </div>
 
-        <form action="{{ route('find-user') }}" method="POST">
+        <form action="{{ route('find-product') }}" method="POST">
             @csrf
             <div class="text-center">
                 <input placeholder="Procure pelo nome..." maxlength="50" style="margin: 1rem" name="name_product"
@@ -43,7 +43,7 @@
                                 <td>{{ $product->val_product }}</td>
                                 <td>{{ $product->des_product }}</td>
                                 <td>
-                                    <form action="{{ route('users.destroy', $product->id_product) }}" method="POST">
+                                    <form action="{{ route('products.destroy', $product->id_product) }}" method="POST">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-circle btn-sm">
@@ -67,9 +67,11 @@
                 </table>
             </div>
             @if ($products instanceof \Illuminate\Pagination\AbstractPaginator)
-                <div class="text-center" style="text-align: center; justify-content: center; margin-bottom : 1rem">
-                    <div class="col-md-auto">{{ $products->links() }}</div>
+                <div class="text-center" style="text-align: center; justify-content: center; margin-bottom : 1rem; color:black">
+                    <div class="col-md-auto pagination justify-content-center">{{ $products->links() }}</div>
                 </div>
             @endif
+        </div>
 
-        @endsection
+    </div>
+@endsection

@@ -79,7 +79,7 @@
         </div>
         @if ($users instanceof \Illuminate\Pagination\AbstractPaginator)
             <div class="text-center" style="text-align: center; justify-content: center; margin-bottom : 1rem">
-                <div class="col-md-auto">{{ $users->links() }}</div>
+                <div class="col-md-auto pagination justify-content-center">{{ $users->links() }}</div>
             </div>
         @endif
 
