@@ -23,12 +23,8 @@
             <div class="form-outline mb-4" style="text-align: center">
                 <label for="inputEmail4">Valor</label>
                 <br><small>Reais </small>
-                <input type="text" maxlength="6" id="field" name="real" class="form-control"
-                    value="{{ substr((string) $product->val_product, 0, -3) }}">
-
-                <br><small>Centavos </small> <br>
-                <input type="text" maxlength="2" id="field2" name="cents" class="form-control"
-                    value="{{ substr((string) $product->val_product, -2) }}">
+                <input type="text" maxlength="6" id="field" name="real" class="form-control currency"
+                    value="R$ {{ number_format($product->val_product,2,",",".")}}">
             </div>
             <div class="form-outline mb-4" style="text-align: center">
                 <label for="inputEstado">Descrição</label>
@@ -39,7 +35,70 @@
                 <label for="inputEstado">Foto</label>
                 <input type="file" name="photo_product">
             </div>
+            <div class="form-outline mb-4" style="text-align: center">
+                <label for="inputEstado">Categoria</label>
+                <select style="margin-bottom: 1.5rem" class="form-control" name="category_product">
+                    <option value=""></option>
+                    @foreach ($categories as $currentCategory)
+                        <option value="{{ $currentCategory->id_category }}">
+                            {{ $currentCategory->name_category }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-outline mb-4" style="text-align: center">
+                <label for="inputEstado">Subcategoria</label>
+                <select style="margin-bottom: 1.5rem" class="form-control" name="subcategory_product">
+                    <option value=""></option>
+                    @foreach ($subcategories as $currentCategory2)
+                        <option value="{{ $currentCategory2->id_subcategory }}">
+                            {{ $currentCategory2->name_subcategory }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
             <button style="background-color: black; border:none;" type="submit" class="btn btn-primary">Salvar</button>
         </form>
     </div>
+@endsection
+@section('format')
+    <script type="text/javascript">
+        // Sample 1
+        // {
+        //     $('#currencyButton').click(function()
+        //     {
+        //         $('#currencyField').formatCurrency();
+        //         $('#currencyField').formatCurrency('.currencyLabel');
+        //     });
+
+        // });
+
+        // Sample 2
+        // $(document).keypress(function(e) {
+        //     console.log(e)
+        //     if (e.which == 188) {
+        //         alert('You pressed a virgula!');
+        //     }
+        // });
+
+        $(document).ready(function() {
+            $('.currency').blur(function() {
+
+                let value = $('.currency').val()
+
+                value = value.replace(",", ".")
+
+                value = parseFloat(value)
+
+                value = value.toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
+                })
+                console.log(value)
+
+                $('.currency').val(value)
+            });
+        });
+
+    </script>
 @endsection

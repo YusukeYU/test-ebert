@@ -38,7 +38,12 @@ class UserController extends Controller
     }
     public function store(StoreUserRequest $request)
     {
-        $this->userRepository->create((array)$request->all());
+
+        $data = $request->all();
+
+        $data['password_user'] = bcrypt($data['password_user']);
+
+        $this->userRepository->create($data);
         return redirect()->route('users.index');
     }
     public function find(Request $request)
@@ -80,5 +85,6 @@ class UserController extends Controller
     {
         return view('admin.pages.main');
     }
+    
 
 }

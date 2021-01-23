@@ -19,6 +19,23 @@
                 <button class="btn btn-secondary" type="submit"> <i class="fa fa-search" aria-hidden="true"></i> </button>
             </div>
         </form>
+        <div class="text-center">
+            <form action="{{ route('filter-category') }}" method="GET">
+                <select  onchange="window.location = this.options[this.selectedIndex].value;" style="margin-bottom: 1.5rem; width:261px;"  name="category_product">
+                    <option value="">Filtrar...</option>
+                    @foreach ($categories as $currentCategory)
+                        <option value="{{ route('filter-category',$currentCategory->id_category.'/'.$currentCategory->name_category)}}">
+                            {{ $currentCategory->name_category }}
+                        </option>
+                    @endforeach
+                    @foreach ($subcategories as $currentCategory2)
+                        <option value="{{ route('filter-category',$currentCategory2->id_subcategory.'/'.$currentCategory2->name_subcategory)}}">
+                            {{ $currentCategory2->name_subcategory }}
+                        </option>
+                    @endforeach
+                </select>
+            </form>
+        </div>
 
 
         <div class="text-center">
@@ -28,6 +45,7 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
+                            <th>Foto do produto</th>
                             <th scope="col">Nome</th>
                             <th scope="col">Valor</th>
                             <th scope="col">Descrição</th>
@@ -39,8 +57,11 @@
                         @foreach ($products as $product)
                             <tr>
                                 <th scope="row">{{ $product->id_product }}</th>
+                                <th>
+                                    <img style="height: 50px;width:50px" src="{{ route('login') . '/storage' . substr($product->photo_product, 6) }}">
+                                </th>
                                 <td>{{ $product->name_product }}</td>
-                                <td>{{ $product->val_product }}</td>
+                                <td>R$ {{ number_format($product->val_product,2,",",".")}}</td>
                                 <td>{{ $product->des_product }}</td>
                                 <td>
                                     <form action="{{ route('products.destroy', $product->id_product) }}" method="POST">
@@ -67,11 +88,14 @@
                 </table>
             </div>
             @if ($products instanceof \Illuminate\Pagination\AbstractPaginator)
-                <div class="text-center" style="text-align: center; justify-content: center; margin-bottom : 1rem; color:black">
+                <div class="text-center"
+                    style="text-align: center; justify-content: center; margin-bottom : 1rem; color:black">
                     <div class="col-md-auto pagination justify-content-center">{{ $products->links() }}</div>
                 </div>
             @endif
         </div>
 
     </div>
+ 
+  
 @endsection

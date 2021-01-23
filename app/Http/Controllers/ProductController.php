@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\EditProductRequest;
+use App\Http\Requests\StoreProductRequest;
 use App\Interfaces\ProductRepositoryInterface;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\EditProductRequest;
-
 
 class ProductController extends Controller
 {
@@ -16,18 +16,22 @@ class ProductController extends Controller
     }
     public function index()
     {
-        return view('admin.pages.product.index', ['products' => $this->productRepository->paginate(5)]);
+        $allCategories = $this->productRepository->loadCategories();
+        return view('admin.pages.product.index', ['products' => $this->productRepository->paginate(5),
+            'categories' => $allCategories['categories'], 'subcategories' => $allCategories['subcategories']]);
     }
-   
+
     public function edit($id)
     {
-            return view('admin.pages.product.edit',['product' => $this->productRepository->find($id)]);
+        $allCategories = $this->productRepository->loadCategories();
+        return view('admin.pages.product.edit', ['product' => $this->productRepository->find($id), 'categories' => $allCategories['categories'], 'subcategories' => $allCategories['subcategories']]);
     }
     public function create()
     {
-        return view('admin.pages.product.create');
+        $allCategories = $this->productRepository->loadCategories();
+        return view('admin.pages.product.create', ['categories' => $allCategories['categories'], 'subcategories' => $allCategories['subcategories']]);
     }
-    
+
     public function store(StoreProductRequest $request)
     {
         $this->productRepository->createProduct($request);
@@ -35,7 +39,8 @@ class ProductController extends Controller
     }
     public function find(Request $request)
     {
-      return view('admin.pages.product.index',['products' => $this->productRepository->findRegisterSimilar('name_product',$request->name_product)]);
+        $allCategories = $this->productRepository->loadCategories();
+        return view('admin.pages.product.index', ['products' => $this->productRepository->findRegisterSimilar('name_product', $request->name_product), 'categories' => $allCategories['categories'], 'subcategories' => $allCategories['subcategories']]);
     }
 
     public function destroy($id)
@@ -43,13 +48,20 @@ class ProductController extends Controller
         $this->productRepository->delete($id);
         return redirect()->route('products.index');
     }
-     
+
     public function update(EditProductRequest $request, $id)
     {
-        $this->productRepository->updateProduct($request,$id, 'id_product');
+        $this->productRepository->updateProduct($request, $id, 'id_product');
         return redirect()->route('products.index');
     }
-    
 
+    public function filterByCategory($id, $name)
+    {
+        $allCategories = $this->productRepository->loadCategories();
+        return view('admin.pages.product.index',
+            ['products' => $this->productRepository->filterByCategory($id, $name),
+                'categories' => $allCategories['categories'],
+                'subcategories' => $allCategories['subcategories']]);
+    }
 
 }

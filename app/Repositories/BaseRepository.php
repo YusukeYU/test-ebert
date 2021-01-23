@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Interfaces\IBaseRepositoryInterface; 
 use Illuminate\Database\Eloquent\Model;   
+use Illuminate\Support\Facades\DB;
 
 class BaseRepository implements IBaseRepositoryInterface 
 {     
@@ -45,5 +46,27 @@ class BaseRepository implements IBaseRepositoryInterface
     {
         return $this->model->where($attribute, '=', $id)->update($data);
     }
+
+    public function selectJoin($currentTable, $currentPrimaryKey, $joinTable, $joinPrimaryKey,$column){
+        return DB::table($joinTable) 
+        ->leftJoin($currentTable, $currentTable.'.'.$currentPrimaryKey, '=', $joinTable.'.'.$joinPrimaryKey)
+        ->select($currentTable.'.'.$column,$joinTable.'.*')->paginate(5);
+    }
+    public function selectJoinWhere($currentTable, $currentPrimaryKey, $joinTable, $joinPrimaryKey,$parameter,$value){
+        return DB::table($joinTable) 
+        ->rightJoin($currentTable, $currentTable.'.'.$currentPrimaryKey, '=', $joinTable.'.'.$joinPrimaryKey)
+        ->select($currentTable.'.*',$joinTable.'.*')
+        ->where($joinTable.'.'.$parameter,'=',$value)
+        ->get();
+    }
+    /*
+    return DB::table('tasks')
+    ->leftjoin('services', 'tasks.service_task', '=', 'services.id_service')
+    ->select('tasks.*', 'services.name_service', 'services.price_service', 'clients.cpf_client' ,  'clients.email_client', 'clients.name_client')
+    ->orderBy('created_at')
+    ->simplePaginate(4);
+   }
+   */
+
 
 }

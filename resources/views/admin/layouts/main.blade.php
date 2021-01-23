@@ -10,7 +10,7 @@
     <link href="{{ asset('css/font-awesome.min.css') }}" type="text/css" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" type="text/css" rel="stylesheet">
 
-   @yield('css')
+    @yield('css')
 </head>
 
 <body>
@@ -24,6 +24,7 @@
             <div id="myLinks">
                 <a href="{{ route('users.index') }}">Usuários</a>
                 <a href="{{ route('products.index') }}">Produtos</a>
+                <a href="{{ route('categories.index') }}">Categorias</a>
                 <a href="/logout">Logout</a>
             </div>
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
@@ -37,7 +38,7 @@
 
     @yield('container')
 
-
+   
     <script>
         function myFunction() {
             var x = document.getElementById("myLinks");
@@ -47,33 +48,37 @@
                 x.style.display = "block";
             }
         }
-        </script>
+
+    </script>
 
 
-<footer class="bg-light text-center text-lg-start myclass text-center">
-  <div class="container p-4">
-    <div  class="row">
-      <div  style="max-width: 100%; flex: 0 0 100%" class="col-lg-6 col-md-12 mb-4 mb-md-0">
-        <h5 class="text-uppercase">Sistema para teste</h5>
+    <footer style="margin-top: 4rem;" class="bg-light text-center text-lg-start myclass text-center">
+        <div class="container p-4">
+            <div class="row">
+                <div style="max-width: 100%; flex: 0 0 100%" class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Sistema para teste</h5>
 
-        <p>
-         Todo o front-end e back-end desta aplicação foi desenvolvido com o propósito de ser avaliado, e sendo assim, o mesmo constata-se 100% original e não comercializável.
-        </p>
-      </div>
+                    <p>
+                        Todo o front-end e back-end desta aplicação foi desenvolvido com o propósito de ser avaliado, e
+                        sendo assim, o mesmo constata-se 100% original e não comercializável.
+                    </p>
+                </div>
 
-  </div>
-
-
-
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-    © 2020 Copyright:
-    <a class="text-dark" href="https://pontesdev.com.br/">pontesdev.com.br</a>
-  </div>
-
-</footer>
+            </div>
 
 
+
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+                © 2020 Copyright:
+                <a class="text-dark" href="https://pontesdev.com.br/">pontesdev.com.br</a>
+            </div>
+        </div>
+
+    </footer>
+
+    
     <script href="{{ asset('js/bootstrap.min.js') }}"> </script>
+    
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
@@ -82,9 +87,10 @@
     </script>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.formatCurrency-1.4.0.js') }}"></script>
 
-    <script src="{{asset('js/main.js')}}"></script> 
-
+    <script src="{{ asset('js/main.js') }}"></script>
+    @yield('format')
     @yield('scripts')
 </body>
 
